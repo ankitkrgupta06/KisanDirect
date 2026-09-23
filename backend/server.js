@@ -36,13 +36,8 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
 
-app.options("*", cors());
-
 app.use(express.json());
 
-// routes
-app.use("/api/auth", require("./routes/authRoutes"));
-app.use("/api/products", require("./routes/productRoutes"));
 // =========================
 // HEALTH CHECK
 // =========================

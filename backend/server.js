@@ -32,9 +32,21 @@ connectDB();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://kisan-direct-delta.vercel.app",
+    ],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+app.use(express.json());
+
+// routes AFTER CORS
+app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
 
 app.use(express.json());
 app.use("/uploads", express.static("uploads"));

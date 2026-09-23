@@ -150,7 +150,7 @@ const predictMarketPrice = async (
     // -------------------------
 
     const response = await fetch(
-      "http://localhost:8000/predict",
+      `${process.env.ML_SERVICE_URL}/predict`,
       {
         method: "POST",
 

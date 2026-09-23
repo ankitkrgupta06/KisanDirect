@@ -30,23 +30,19 @@ connectDB();
 // MIDDLEWARE
 // =========================
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:5174",
-      "https://kisan-direct-delta.vercel.app",
-    ],
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+app.use(cors({
+  origin: "https://kisan-direct-delta.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
 
+app.options("*", cors());
 
 app.use(express.json());
-app.use("/uploads", express.static("uploads"));
 
-
+// routes
+app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/products", require("./routes/productRoutes"));
 // =========================
 // HEALTH CHECK
 // =========================

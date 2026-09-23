@@ -30,14 +30,17 @@ connectDB();
 // MIDDLEWARE
 // =========================
 
-app.use(cors({
+const corsOptions = {
   origin: "https://kisan-direct-delta.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
-}));
+};
+
+app.use(cors(corsOptions));
+
+app.options(/.*/, cors(corsOptions));
 
 app.use(express.json());
-
 // =========================
 // HEALTH CHECK
 // =========================
